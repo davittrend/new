@@ -1,0 +1,27 @@
+.form-group {
+  @apply space-y-2;
+}
+
+.form-label {
+  @apply block text-sm font-medium text-gray-700;
+}
+
+.form-input {
+  @apply input;
+}
+
+.form-select {
+  @apply input;
+}
+
+.form-checkbox {
+  @apply rounded border-gray-300 text-red-600 focus:ring-red-500;
+}
+
+.form-error {
+  @apply mt-1 text-sm text-red-600;
+}
+
+.form-hint {
+  @apply mt-1 text-sm text-gray-500;
+}
