@@ -1,3 +1,4 @@
+
 import { useState, useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store/store';
@@ -17,7 +18,7 @@ export interface PinterestAuth {
   };
 }
 
-export function useAuth() {
+const useAuth = () => {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
   const { isAuthenticated, userData } = useSelector((state: RootState) => state.auth);
@@ -55,8 +56,7 @@ export function useAuth() {
         throw new Error('Failed to get authentication URL');
       }
     } catch (error) {
-      console.error('Auth error:', error);
-      toast.error('Failed to initiate authentication. Please try again.');
+      displayError(error);
       throw error;
     } finally {
       setIsLoading(false);
@@ -86,7 +86,7 @@ export function useAuth() {
       }
       return false;
     } catch (error) {
-      console.error('Token refresh error:', error);
+      displayError(error);
       return false;
     }
   }, [userData, dispatch]);
@@ -97,6 +97,11 @@ export function useAuth() {
     toast.success('Successfully logged out');
   }, [dispatch]);
 
+  const displayError = (error: Error) => {
+    console.error('Auth error:', error);
+    toast.error('Failed to initiate authentication. Please try again.');
+  };
+
   return {
     isLoading,
     isAuthenticated,
@@ -105,4 +110,6 @@ export function useAuth() {
     refreshToken,
     logout
   };
-}
+};
+
+export default useAuth;
