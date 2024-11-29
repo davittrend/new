@@ -7,11 +7,11 @@
 }
 
 .form-input {
-  @apply input;
+  @apply border border-gray-300 rounded-md p-2; /* Example of applying Tailwind utilities for input */
 }
 
 .form-select {
-  @apply input;
+  @apply border border-gray-300 rounded-md p-2; /* Example of applying Tailwind utilities for select */
 }
 
 .form-checkbox {
